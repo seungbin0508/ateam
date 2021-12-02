@@ -5,6 +5,12 @@
 - [x] Can get the coordinates of postcode of stores
 - [x] Can search stores within given radius from given point in postcode
 
+# Start
+```
+npm install
+npm start
+```
+
 # APIs
 
 - /stores
