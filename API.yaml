@@ -1,0 +1,101 @@
+openapi: 3.0.3
+info:
+  title: Stores
+  description: Stores
+  version: 1.0.0
+servers:
+  - url: 'localhost'
+paths:
+  /stores:
+    get:
+      tags: [Stores]
+      description: Returns array of stores
+      parameters:
+          - $ref: "#/components/parameters/Coords"
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Store"
+  /stores/{name}:
+    get:
+      tags: [Stores]
+      description: Returns store by given name
+      parameters:
+        - $ref: "#/components/parameters/Coords"
+        - $ref: "#/components/parameters/Name"
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Store"
+  /stores/search:
+    get:
+      tags: [Stores]
+      description: Returns array of stores within given radius from given postcode.
+      parameters:
+        - $ref: "#/components/parameters/Radius"
+        - $ref: "#/components/parameters/Postcode"
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Store"
+components:
+  schemas:
+    Store:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Hatfield
+        postcode:
+          type: string
+          example: AL9 5JP
+        coords:
+          nullable: true
+          type: object
+          properties:
+            latitude:
+              type: number
+            longitude:
+              type: number
+  parameters:
+    Name:
+      name: name
+      in: path
+      description: Name of store to search
+      required: true
+      schema:
+        type: string
+    Coords:
+      name: coords
+      in: query
+      description: If true, include latitude and longitude in store item's property.
+      required: false
+      schema:
+        type: boolean
+    Radius:
+      name: radius
+      in: query
+      description: Metric.
+      required: true
+      schema:
+        type: integer
+    Postcode:
+      name: postcode
+      in: query
+      description: Center point.
+      required: true
+      schema:
+        type: string

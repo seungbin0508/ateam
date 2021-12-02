@@ -1,0 +1,22 @@
+{
+  "name": "ateam",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx nodemon index.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  },
+  "keywords": [],
+  "author": "SeungBin Kim",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "express": "^4.17.1",
+    "geolib": "^3.3.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
